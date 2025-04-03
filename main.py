@@ -1,11 +1,16 @@
-from fastapi import APIRouter
+import uvicorn
+from fastapi import FastAPI
 
-student_router = APIRouter(prefix="/student", tags=["student"])
+from config import app_config
 
-@student_router.get("", status_code=200)
-async def student_signup():
-    """
-    This method creates an instance if student
-    :return: id of the student created
-    """
-    pass
+app = FastAPI(**app_config)
+
+
+@app.get("/", include_in_schema=True)
+async def root():
+    return {"Health": "OK"}
+
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8083, reload=True)
+
