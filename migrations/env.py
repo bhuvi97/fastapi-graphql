@@ -14,7 +14,7 @@ load_dotenv()
 config = context.config
 
 # Get the DATABASE_URL from the environment variable
-DATABASE_URL = os.getenv("DB_URL", "No value found")
+DATABASE_URL = os.getenv("DB_URL", "mysql+pymysql://root:&LheC3DLzoCH@localhost:3306/Institution")
 
 # Override the sqlalchemy.url in alembic.ini with the one from the environment
 config.set_main_option("sqlalchemy.url", DATABASE_URL)
