@@ -6,7 +6,7 @@ from config import app_config
 from src.student.router import student_router
 
 app = FastAPI(**app_config)
-app.include_router(student_router)
+app.include_router(student_router, tags=["student"])
 
 
 @app.get("/", include_in_schema=True)
@@ -15,5 +15,5 @@ async def root():
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8083, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8085, reload=True)
 

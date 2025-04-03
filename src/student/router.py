@@ -18,10 +18,23 @@ async def student_signup(student_data: schemas.Student, async_session: AsyncSess
 
 
 @student_router.get("", include_in_schema=True, status_code=200)
-async def get_students(async_session: AsyncSession = Depends(get_db)) -> int:
+async def get_students(async_session: AsyncSession = Depends(get_db)):
     """
     This is the router method for fetching all the students
     :param async_session: The db session
     :return: The list of students
     """
-    return 1000
+    return await service.get_all_students(async_session=async_session)
+
+
+@student_router.get(path="/{id}", include_in_schema=True, status_code=200)
+async def get_student(id: int, async_session: AsyncSession = Depends(get_db)):
+    """
+    This fetches the details of given student with id
+    :param id: student_id
+    :param async_session: The DB session
+    :return: The student data
+    """
+    return await service.get_all_students(async_session=async_session, id=id)
+
+

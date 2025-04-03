@@ -18,11 +18,16 @@ async def create_student_user(student_data: schemas.Student, async_session: Asyn
     return new_user.id
 
 
-async def get_all_students(async_session: AsyncSession):
+async def get_all_students(async_session: AsyncSession, id: int = None):
     """
     This method fetches aff the students from DB
+    :param id: The id of the student
     :param async_session: The DB session
     :return: List of all students
     """
-    students = await async_session.execute(select(models.Student)).scalars().all()
-    return students
+    sql_stmt = select(models.Student)
+    if id:
+        sql_stmt = sql_stmt.filter(models.Student.id == id)
+    students = await (async_session.execute(sql_stmt))
+    student_scalars = students.scalars().all()
+    return student_scalars
