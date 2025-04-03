@@ -1,8 +1,10 @@
 from pydantic import BaseModel, EmailStr, Field, FieldValidationInfo, field_validator
 from datetime import date
+from typing import Optional
 
 
 class Student(BaseModel):
+    id: Optional[int] = Field(None)
     first_name: str = Field(None, max_length=50)
     last_name: str = Field(None, max_length=50)
     email: EmailStr

@@ -3,7 +3,10 @@ from fastapi import FastAPI
 
 from config import app_config
 
+from src.student.router import student_router
+
 app = FastAPI(**app_config)
+app.include_router(student_router)
 
 
 @app.get("/", include_in_schema=True)
