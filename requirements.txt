@@ -7,3 +7,4 @@ asyncmy >= 0.2.9
 alembic >= 1.13
 python-dotenv >= 1.0.1
 pymysql >= 1.1.1
+pydantic >= 2.10.0
