@@ -6,7 +6,7 @@ from config import app_config
 from src.student.router import student_router
 # from src.graphql.router import graphql_router
 from graphene import Schema
-from starlette_graphene3 import GraphQLApp
+from starlette_graphene3 import GraphQLApp, make_graphiql_handler
 
 from src.graphql.service import Query
 
@@ -14,7 +14,7 @@ app = FastAPI(**app_config)
 app.include_router(student_router, tags=["student"])
 # app.include_router(graphql_router, tags=["graphql"])
 schema = Schema(query=Query)
-app.mount("/graphql", GraphQLApp(schema=schema))
+app.mount("/graphql", GraphQLApp(schema=schema, on_get=make_graphiql_handler()))
 
 
 @app.get("/", include_in_schema=True)
