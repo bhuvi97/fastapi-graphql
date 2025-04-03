@@ -15,6 +15,7 @@ async def create_student_user(student_data: schemas.Student, async_session: Asyn
                     email=student_data.email, dob=student_data.dob, phone_number=student_data.phone_number)
     async_session.add(new_user)
     await async_session.flush()
+    await async_session.refresh(new_user)
     await async_session.commit()
     return new_user.id
 

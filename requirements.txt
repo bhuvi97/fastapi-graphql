@@ -8,3 +8,4 @@ alembic >= 1.13
 python-dotenv >= 1.0.1
 pymysql >= 1.1.1
 pydantic >= 2.10.0
+starlette-graphene3 >= 0.6.0

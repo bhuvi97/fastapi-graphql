@@ -7,7 +7,7 @@ class Student(Base):
 
     __tablename__ = "students"
 
-    id = Column(Integer, Sequence('user_id_seq'), primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     first_name = Column(String(50), nullable=False)
     last_name = Column(String(50), nullable=False)
     email = Column(String(100), unique=True, nullable=False)
