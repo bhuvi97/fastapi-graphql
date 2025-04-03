@@ -7,7 +7,7 @@ app_config = {
 import os
 
 DB_USERNAME = os.getenv("DB_USERNAME", "root")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "2pMQH;O%Q-Eg$5w")
+DB_PASSWORD = os.getenv("DB_PASSWORD", "&LheC3DLzoCH")
 DB_HOST = os.getenv("DB_HOST", "localhost")
 DB_PORT = "3306"
 DB_NAME = os.getenv("DB_NAME", "Institution")
