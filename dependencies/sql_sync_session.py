@@ -1,13 +1,13 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from config import DB_USERNAME, DB_PASSWORD, DB_HOST, DB_NAME, DB_PORT
-# Asynchronous database URL
+# synchronous database URL
 SQLALCHEMY_DATABASE_URL = f"mysql+pymysql://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
-# Create async engine
+# Create DB sync engine
 engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)
 
-# Async session maker
+# session maker
 SyncSessionLocal = sessionmaker(
     bind=engine,
     autocommit=False,
@@ -15,7 +15,7 @@ SyncSessionLocal = sessionmaker(
 )
 
 
-# Dependency to get the async session
+# Dependency to get the DB session
 def get_db_sync():
     """
     Creates the database session
