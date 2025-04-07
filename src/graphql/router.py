@@ -6,5 +6,10 @@ from .service import Query
 from strawberry.fastapi import GraphQLRouter
 
 
+async def get_context(request):
+    db_gen = get_db()
+    db = await anext(db_gen)
+    return {"db": db}
+
 schema = strawberry.Schema(query=Query)
-graphql_app = GraphQLRouter(schema=schema, graphiql=True, context_getter=lambda request : {"db": next(get_db())})
+graphql_app = GraphQLRouter(schema=schema, graphiql=True, context_getter=get_context)
