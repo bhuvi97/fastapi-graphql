@@ -9,8 +9,7 @@ from src.graphql.router import graphql_app
 app = FastAPI(**app_config)
 app.include_router(student_router, tags=["student"])
 # app.include_router(graphql_router, tags=["graphql"])
-
-app.include_router(graphql_app, prefix="/graphql")
+app.mount("/graphql", graphql_app)
 
 
 @app.get("/", include_in_schema=True)

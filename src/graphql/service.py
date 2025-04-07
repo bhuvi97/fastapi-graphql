@@ -1,9 +1,5 @@
-"""
-from graphene import Schema, Int, String, List, ObjectType
-from src.models import Student as StudentModel
-from graphene import relay
-from graphene_sqlalchemy import SQLAlchemyObjectType, SQLAlchemyConnectionField
-from dependencies.sql_sync_session import get_db_sync
+
+from graphene import String, ObjectType
 
 
 class Query(ObjectType):
@@ -13,7 +9,7 @@ class Query(ObjectType):
         return 'Hello ' + name
 
 
-
+"""
 class Student(SQLAlchemyObjectType):
     class Meta:
         model = StudentModel
@@ -23,7 +19,7 @@ class Student(SQLAlchemyObjectType):
 class Query(ObjectType):
     node = relay.Node.Field()
     all_students = SQLAlchemyConnectionField(Student.connection)
-"""
+
 
 import strawberry
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -42,4 +38,4 @@ class Query:
         async_session: AsyncSession = info.context["db"]
         result = await async_session.execute(select(Student))
         return result.scalars().all()
-
+"""

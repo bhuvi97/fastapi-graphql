@@ -1,8 +1,6 @@
-import strawberry
 from datetime import date
 
 
-@strawberry.type
 class StudentType:
     id: int
     first_name: str
