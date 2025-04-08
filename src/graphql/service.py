@@ -1,12 +1,32 @@
 
-from graphene import String, ObjectType
+from graphene import String, ObjectType, Int, Date, List, Field
+from dependencies.sql_sync_session import get_db_sync
+from src.models import Student as StudentModel
 
+
+class StudentType(ObjectType):
+    id = Int()
+    first_name = String()
+    last_name = String()
+    dob = Date()
+    email = String()
+    phone_number = String()
 
 class Query(ObjectType):
-    hello = String(name=String(default_value="World"))
+    all_students = List(StudentType)
 
-    def resolve_hello(self, info, name):
-        return 'Hello ' + name
+    def resolve_all_students(self, info):
+        request = info.context["request"]
+        token = request.headers.get("authorization")
+        print(token)
+        db_gen = get_db_sync()
+        db = next(db_gen)
+        try:
+            students = db.query(StudentModel).all()
+            return students
+        finally:
+            db.close()
+
 
 
 """
