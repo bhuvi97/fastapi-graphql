@@ -1,6 +1,6 @@
 """Created table for credentials
 
-Revision ID: f3cbeb84919f
+Revision ID: f3cbeb84919f # pragma allow secrets
 Revises: 
 Create Date: 2025-04-03 10:25:05.051583
 

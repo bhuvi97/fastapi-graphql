@@ -10,7 +10,7 @@ from middleware.auth_middleware import auth_middleware
 app = FastAPI(**app_config)
 app.include_router(student_router, tags=["student"])
 # app.include_router(graphql_router, tags=["graphql"])
-app.middleware("http")(auth_middleware)
+# app.middleware("http")(auth_middleware)
 app.mount("/graphql", graphql_app)
 
 
